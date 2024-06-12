@@ -92,7 +92,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="z-20 w-full bg-white/90 shadow-lg shadow-slate-700/5 py-2">
+      <header className="sticky top-0 left-0 z-20 w-full bg-white/90 shadow-lg shadow-slate-700/5 py-2">
         <div className="container">
           <nav className="flex justify-between items-center">
             <a className="">
