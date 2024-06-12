@@ -25,23 +25,23 @@ export default function Header() {
 
   const menuItems = (
     <>
-      <li className="py-1 pl-12 pr-20 sm:p-0 hover:bg-white/75">
+      <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
         <Link to="" className="inline-block w-full text-xl">
           হোম
         </Link>
       </li>
-      <li className="py-1 pl-12 pr-20 sm:p-0 hover:bg-white/75">
+      <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
         <Link to="" className="inline-block w-full text-xl">
           বই
         </Link>
       </li>
-      <li className="py-1 pl-12 pr-20 sm:p-0 hover:bg-white/75">
+      <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
         <Link to="" className="inline-block w-full text-xl">
           লেখক
         </Link>
       </li>
       <li
-        className="py-1 pl-12 pr-20 sm:p-0 hover:bg-white/75 relative"
+        className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75 relative"
         ref={dropdownRef}
         onClick={() => {
           setCategoriesOpen(!categoriesOpen);
@@ -52,25 +52,37 @@ export default function Header() {
           <MdOutlineChevronRight className="rotate-90" />
         </span>
         {categoriesOpen && (
-          <ul className="absolute top-3 sm:top-5 left-44 sm:left-5 bg-primary py-1 rounded-sm">
-            <li className="pl-2 pr-5 py-1 hover:bg-white">
-              <Link>History</Link>
+          <ul className="absolute top-3 sm:top-5 left-36 sm:left-5 bg-primary py-1 rounded-sm border border-black">
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>ইবাদাত</Link>
             </li>
-            <li className="pl-2 pr-5 py-1 hover:bg-white">
-              <Link>Story</Link>
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>মোটিভেশনাল</Link>
             </li>
-            <li className="pl-2 pr-5 py-1 hover:bg-white">
-              <Link>Doctrine</Link>
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>প্রবন্ধ</Link>
+            </li>
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>রম্য গল্প</Link>
+            </li>
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>ধর্মতত্ত্ব</Link>
+            </li>
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>ইতিহাস</Link>
+            </li>
+            <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
+              <Link>জীবনী</Link>
             </li>
           </ul>
         )}
       </li>
-      <li className="py-1 pl-12 pr-20 sm:p-0 hover:bg-white/75">
+      <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
         <Link to="" className="inline-block w-full text-xl">
           প্যাকেজ
         </Link>
       </li>
-      <li className="py-1 pl-12 pr-20 sm:p-0 hover:bg-white/75">
+      <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
         <Link to="" className="inline-block w-full text-xl">
           ব্লগ
         </Link>
@@ -93,7 +105,7 @@ export default function Header() {
             </div>
             {/* Mobile Menu */}
             {isToggleOpen && (
-              <div className="block sm:hidden fixed top-0 left-0 h-screen bg-slate-500">
+              <div className="block sm:hidden fixed top-0 left-0 h-screen bg-primary">
                 <ul className="flex flex-col">{menuItems}</ul>
               </div>
             )}
