@@ -1,15 +1,17 @@
-import AllBooks from "./AllBooks";
+import Hero from "./Hero";
 import CategorySlider from "./CategorySlider";
-import Hero from "./Hero/Hero";
-import RecentPublished from "./RecentPublished";
+import AllBooksSlider from "./AllBooksSlider";
+import RecentPublishedSlider from "./RecentPublishedSlider";
+import FacebookPageBanner from "./FacebookPageBanner";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <RecentPublished />
-      <AllBooks />
+      <RecentPublishedSlider />
+      <AllBooksSlider />
       <CategorySlider />
+      <FacebookPageBanner />
     </>
   );
 }

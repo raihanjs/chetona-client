@@ -52,7 +52,7 @@ export default function Header() {
           <MdOutlineChevronRight className="rotate-90" />
         </span>
         {categoriesOpen && (
-          <ul className="absolute top-3 sm:top-5 left-36 sm:left-5 bg-primary py-1 rounded-sm border border-black sm:border-0">
+          <ul className="absolute top-3 sm:top-5 left-36 sm:left-5 bg-primary py-1 rounded-sm border border-black">
             <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
               <Link>ইবাদাত</Link>
             </li>
