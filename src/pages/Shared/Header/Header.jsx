@@ -36,7 +36,7 @@ export default function Header() {
         </Link>
       </li>
       <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
-        <Link to="" className="inline-block w-full text-xl">
+        <Link to="/writers" className="inline-block w-full text-xl">
           লেখক
         </Link>
       </li>
@@ -52,7 +52,7 @@ export default function Header() {
           <MdOutlineChevronRight className="rotate-90" />
         </span>
         {categoriesOpen && (
-          <ul className="absolute top-3 sm:top-5 left-36 sm:left-5 bg-primary py-1 rounded-sm border border-black">
+          <ul className="absolute top-3 sm:top-5 left-36 sm:left-5 bg-primary py-1 rounded-sm border sm:border-0 border-black">
             <li className="pl-2 pr-20 py-1 text-lg hover:bg-white">
               <Link>ইবাদাত</Link>
             </li>

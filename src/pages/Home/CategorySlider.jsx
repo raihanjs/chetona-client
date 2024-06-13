@@ -70,7 +70,7 @@ export default function CategorySlider() {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <section className="bg-white py-12">
+    <section className="py-12">
       <div className="container">
         <div className="flex items-center justify-between w-10/12 mx-auto sm:w-full">
           <div className="mx-auto w-11/12">

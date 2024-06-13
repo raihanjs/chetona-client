@@ -1,17 +1,17 @@
 import React, { useRef } from "react";
 import SectionTitle from "../../Components/SectionTitle";
-import BookCard from "../../Components/BookCard";
+import WriterCard from "../../Components/WriterCard";
 
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import useWriters from "../../hooks/useWriters";
 
 import { LuArrowLeftSquare, LuArrowRightSquare } from "react-icons/lu";
-import useBooks from "../../hooks/useBooks";
 
-export default function RecentPublishedSlider() {
-  const recentBooksSliderBtns = useRef(null);
+export default function AllWritersSlider() {
+  const allWritersSliderBtns = useRef(null);
   const settings = {
     arrows: false,
     infinite: false,
@@ -49,18 +49,20 @@ export default function RecentPublishedSlider() {
       },
     ],
   };
+  const [writers, isLoading] = useWriters();
 
-  const [books, isLoading] = useBooks();
+  if (isLoading) return <p>Loading...</p>;
+
   return (
-    <section className="bg-white py-12 ">
+    <section className="py-12 bg-white">
       <div className="container">
-        <SectionTitle title="সদ্য প্রকাশিত" text="ঘুরে দেখুন" link="" />
+        <SectionTitle title="সকল বই" text="ঘুরে দেখুন" link="" />
 
         <div className="relative my-5">
           <div className="mx-auto">
-            <Slider {...settings} ref={recentBooksSliderBtns}>
-              {books.map((book) => (
-                <BookCard key={book._id} book={book} margin="mx-auto" />
+            <Slider {...settings} ref={allWritersSliderBtns}>
+              {writers.map((writer) => (
+                <WriterCard key={writer._id} writer={writer} margin="mx-auto" />
               ))}
             </Slider>
           </div>
@@ -68,13 +70,13 @@ export default function RecentPublishedSlider() {
           <div>
             <button
               className="absolute top-1/3 left-0"
-              onClick={() => recentBooksSliderBtns.current.slickPrev()}
+              onClick={() => allWritersSliderBtns.current.slickPrev()}
             >
               <LuArrowLeftSquare className="text-4xl text-primary bg-white rounded-md" />
             </button>
             <button
               className="absolute top-1/3 right-0"
-              onClick={() => recentBooksSliderBtns.current.slickNext()}
+              onClick={() => allWritersSliderBtns.current.slickNext()}
             >
               <LuArrowRightSquare className="text-4xl text-primary bg-white rounded-md" />
             </button>

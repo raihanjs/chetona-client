@@ -61,7 +61,7 @@ export default function AllBooksSlider() {
           <div className="mx-auto">
             <Slider {...settings} ref={allBooksSliderBtns}>
               {books.map((book) => (
-                <BookCard key={book._id} book={book} mx="auto" />
+                <BookCard key={book._id} book={book} margin="mx-auto" />
               ))}
             </Slider>
           </div>

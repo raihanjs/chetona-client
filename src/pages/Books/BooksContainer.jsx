@@ -8,13 +8,13 @@ export default function BooksContainer() {
       <div className="container">
         <div className="flex flex-wrap space-y-2">
           {books.map((book) => (
-            <BookCard key={book._id} book={book} mx="1" />
+            <BookCard key={book._id} book={book} margin="m-1" />
           ))}
           {books.map((book) => (
-            <BookCard key={book._id} book={book} mx="1" />
+            <BookCard key={book._id} book={book} margin="m-1" />
           ))}
           {books.map((book) => (
-            <BookCard key={book._id} book={book} mx="1" />
+            <BookCard key={book._id} book={book} margin="m-1" />
           ))}
         </div>
       </div>

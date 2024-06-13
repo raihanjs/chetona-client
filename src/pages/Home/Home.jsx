@@ -4,6 +4,7 @@ import AllBooksSlider from "./AllBooksSlider";
 import RecentPublishedSlider from "./RecentPublishedSlider";
 import FacebookPageBanner from "./FacebookPageBanner";
 import Subscribe from "../Shared/Subscribe/Subscribe";
+import AllWritersSlider from "./AllWritersSlider";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <RecentPublishedSlider />
       <AllBooksSlider />
+      <AllWritersSlider />
       <CategorySlider />
       <FacebookPageBanner />
       <Subscribe />

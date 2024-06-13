@@ -1,6 +1,6 @@
 export default function FacebookPageBanner() {
   return (
-    <section className="py-12">
+    <section className="py-12 bg-white">
       <div className="container">
         <div className="md:flex space-y-5 space-x-5 items-center">
           <div className="md:w-7/12 lg:w-6/12">
