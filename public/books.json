@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "1",
+    "name": "মুরিদপুরের পীর",
+    "img": "https://i.ibb.co/fXScgtX/muridpurer-pir.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "2",
+    "name": "স্মরণীয় মনীষী",
+    "img": "https://i.ibb.co/QjJt0Q5/soronio-monisi.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "3",
+    "name": "মুসলিম জাতির ইতিহাস",
+    "img": "https://i.ibb.co/6tWJC3x/muslim-jatir-itihas.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "4",
+    "name": "স্বপ্নের চেয়েও বড়",
+    "img": "https://i.ibb.co/5LTCjZ7/sopner-cheyeo-boro.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "5",
+    "name": "মহাবীর সালাহউদ্দিন আইয়ুবি",
+    "img": "https://i.ibb.co/NTyZmj4/salahuddin-ayubi.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "6",
+    "name": "ইতিহাস পাঠ",
+    "img": "https://i.ibb.co/C0k1gsj/itihas-path.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "7",
+    "name": "নির্মল জীবন",
+    "img": "https://i.ibb.co/pfRLjvh/nirmol-jibon.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  },
+  {
+    "_id": "8",
+    "name": "শাকহাব প্রান্তরে",
+    "img": "https://i.ibb.co/HFXQpMx/shakhab-prantor-e.png",
+    "writers": [],
+    "price": 200,
+    "stock": "",
+    "status": "published"
+  }
+]

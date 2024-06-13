@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import { LuArrowLeftSquare, LuArrowRightSquare } from "react-icons/lu";
+import useBooks from "../../hooks/useBooks";
 
 export default function RecentPublishedSlider() {
   const recentBooksSliderBtns = useRef(null);
@@ -44,6 +45,8 @@ export default function RecentPublishedSlider() {
       },
     ],
   };
+
+  const [books, isLoading] = useBooks();
   return (
     <section className="bg-white py-12 ">
       <div className="container">
@@ -52,18 +55,9 @@ export default function RecentPublishedSlider() {
         <div className="relative my-5">
           <div className="mx-auto">
             <Slider {...settings} ref={recentBooksSliderBtns}>
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
+              {books.map((book) => (
+                <BookCard key={book._id} book={book} />
+              ))}
             </Slider>
           </div>
           {/* Slider Buttons */}

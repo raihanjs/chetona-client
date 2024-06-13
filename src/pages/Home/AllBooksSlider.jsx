@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import SectionTitle from "../../Components/SectionTitle";
 import BookCard from "../../Components/BookCard";
 
+import useBooks from "../../hooks/useBooks";
+
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -44,6 +46,8 @@ export default function AllBooksSlider() {
       },
     ],
   };
+  const [books, isLoading] = useBooks();
+
   return (
     <section className="my-12 ">
       <div className="container">
@@ -52,18 +56,9 @@ export default function AllBooksSlider() {
         <div className="relative my-5">
           <div className="mx-auto">
             <Slider {...settings} ref={allBooksSliderBtns}>
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
-              <BookCard />
+              {books.map((book) => (
+                <BookCard key={book._id} book={book} />
+              ))}
             </Slider>
           </div>
           {/* Slider Buttons */}
