@@ -1,3 +1,4 @@
+import AllBooks from "./AllBooks";
 import Hero from "./Hero/Hero";
 import RecentPublished from "./RecentPublished";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Hero />
       <RecentPublished />
+      <AllBooks />
     </>
   );
 }

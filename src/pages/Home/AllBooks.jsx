@@ -9,8 +9,8 @@ import Slider from "react-slick";
 
 import { LuArrowLeftSquare, LuArrowRightSquare } from "react-icons/lu";
 
-export default function RecentPublished() {
-  const recentBooksSliderBtns = useRef(null);
+export default function AllBooks() {
+  const allBooksSliderBtns = useRef(null);
   const settings = {
     arrows: false,
     infinite: false,
@@ -45,13 +45,13 @@ export default function RecentPublished() {
     ],
   };
   return (
-    <section className="bg-white py-12 ">
+    <section className="my-12 ">
       <div className="container">
-        <SectionTitle title="সদ্য প্রকাশিত" text="ঘুরে দেখুন" link="" />
+        <SectionTitle title="সকল বই" text="ঘুরে দেখুন" link="" />
 
         <div className="relative my-5">
           <div className="mx-auto">
-            <Slider {...settings} ref={recentBooksSliderBtns}>
+            <Slider {...settings} ref={allBooksSliderBtns}>
               <BookCard />
               <BookCard />
               <BookCard />
@@ -70,13 +70,13 @@ export default function RecentPublished() {
           <div>
             <button
               className="absolute top-1/3 left-0"
-              onClick={() => recentBooksSliderBtns.current.slickPrev()}
+              onClick={() => allBooksSliderBtns.current.slickPrev()}
             >
               <LuArrowLeftSquare className="text-4xl text-primary bg-white rounded-md" />
             </button>
             <button
               className="absolute top-1/3 right-0"
-              onClick={() => recentBooksSliderBtns.current.slickNext()}
+              onClick={() => allBooksSliderBtns.current.slickNext()}
             >
               <LuArrowRightSquare className="text-4xl text-primary bg-white rounded-md" />
             </button>
