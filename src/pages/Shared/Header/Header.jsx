@@ -31,7 +31,7 @@ export default function Header() {
         </Link>
       </li>
       <li className="py-1 pl-6 pr-16 sm:p-0 hover:bg-white/75">
-        <Link to="" className="inline-block w-full text-xl">
+        <Link to="/books" className="inline-block w-full text-xl">
           বই
         </Link>
       </li>

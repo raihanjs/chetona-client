@@ -6,7 +6,7 @@ import Logo from "../../../assets/images/logo.png";
 
 export default function Footer() {
   return (
-    <footer className="pt-5">
+    <footer className="mt-12">
       <div className="container">
         <div className="flex flex-wrap justify-between space-x-5">
           {/* Menu Item */}

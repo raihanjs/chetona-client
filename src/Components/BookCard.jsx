@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, mx }) {
   const { name, img, price } = book;
   return (
-    <div className="mx-auto w-[150px] sm:w-[180px] px-4 py-2 rounded-md border-2 hover:border-[#40A4DC] transition-all hover:shadow-2xl relative">
+    <div
+      className={`mx-${mx} w-[150px] sm:w-[180px] px-4 py-2 rounded-md border-2 hover:border-[#40A4DC] transition-all hover:shadow-2xl relative`}
+    >
       {/* Book Img */}
       <Link t0="">
         <img

@@ -18,30 +18,34 @@ export default function AllBooksSlider() {
     infinite: false,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 1,
+    slidesToScroll: 7,
     responsive: [
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 5,
+          slidesToScroll: 5,
         },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
+          slidesToScroll: 4,
         },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 3,
         },
       },
       {
         breakpoint: 460,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
     ],
@@ -57,7 +61,7 @@ export default function AllBooksSlider() {
           <div className="mx-auto">
             <Slider {...settings} ref={allBooksSliderBtns}>
               {books.map((book) => (
-                <BookCard key={book._id} book={book} />
+                <BookCard key={book._id} book={book} mx="auto" />
               ))}
             </Slider>
           </div>
