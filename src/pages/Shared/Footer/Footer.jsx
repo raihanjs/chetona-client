@@ -6,7 +6,7 @@ import Logo from "../../../assets/images/logo.png";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="pt-5">
       <div className="container">
         <div className="flex flex-wrap justify-between space-x-5">
           {/* Menu Item */}
@@ -145,6 +145,12 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+      </div>
+
+      <div className="text-center py-2 border-t-2">
+        <p className="font-mont text-base md:text-lg lg:text-xl text-[#272425]">
+          Copyright © 2024 | Design and Developed by RaihanJS
+        </p>
       </div>
     </footer>
   );

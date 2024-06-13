@@ -3,6 +3,7 @@ import CategorySlider from "./CategorySlider";
 import AllBooksSlider from "./AllBooksSlider";
 import RecentPublishedSlider from "./RecentPublishedSlider";
 import FacebookPageBanner from "./FacebookPageBanner";
+import Subscribe from "../Shared/Subscribe/Subscribe";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <AllBooksSlider />
       <CategorySlider />
       <FacebookPageBanner />
+      <Subscribe />
     </>
   );
 }

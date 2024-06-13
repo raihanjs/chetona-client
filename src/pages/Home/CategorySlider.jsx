@@ -89,7 +89,7 @@ export default function CategorySlider() {
               ))}
             </Slider>
           </div>
-          <div className="w-1/12 flex justify-end">
+          <div className="w-1/12 flex justify-end z-10">
             <button
               onClick={() => catrgorySlider.current.slickNext()}
               className="text-lg md:text-xl lg:text-2xl text-[#717C7F] my-2 px-3 py-3 bg-white rounded-md shadow-md hover:text-[#40A4DC]"
