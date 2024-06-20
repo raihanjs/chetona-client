@@ -10,6 +10,15 @@ export default function WritersContainer() {
           {writers.map((writer) => (
             <WriterCard writer={writer} margin="m-1" />
           ))}
+          {writers.map((writer) => (
+            <WriterCard writer={writer} margin="m-1" />
+          ))}
+          {writers.map((writer) => (
+            <WriterCard writer={writer} margin="m-1" />
+          ))}
+          {writers.map((writer) => (
+            <WriterCard writer={writer} margin="m-1" />
+          ))}
         </div>
       </div>
     </section>

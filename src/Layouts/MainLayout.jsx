@@ -4,11 +4,13 @@ import { Outlet } from "react-router-dom";
 import Footer from "../pages/Shared/Footer/Footer";
 
 export default function MainLayout() {
+  const url = window.location.pathname.includes("promotion");
+
   return (
     <>
-      <Header />
+      {url || <Header />}
       <Outlet />
-      <Footer />
+      {url || <Footer />}
     </>
   );
 }

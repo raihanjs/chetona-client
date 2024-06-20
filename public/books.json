@@ -6,6 +6,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": false,
     "status": "published"
   },
   {
@@ -15,6 +16,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": true,
     "status": "published"
   },
   {
@@ -24,6 +26,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": true,
     "status": "published"
   },
   {
@@ -33,6 +36,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": false,
     "status": "published"
   },
   {
@@ -42,6 +46,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": false,
     "status": "published"
   },
   {
@@ -51,6 +56,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": true,
     "status": "published"
   },
   {
@@ -60,6 +66,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": false,
     "status": "published"
   },
   {
@@ -69,6 +76,7 @@
     "writers": [],
     "price": 200,
     "stock": "",
+    "bestSelling": false,
     "status": "published"
   }
 ]
