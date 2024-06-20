@@ -29,7 +29,9 @@ export const router = createBrowserRouter([
         element: <Writers />,
       },
       {
-        path: "/promotion",
+        path: "/promotions/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/promotions/${params.id}`),
         element: <Promotion />,
       },
     ],
