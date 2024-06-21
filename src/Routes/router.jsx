@@ -31,7 +31,9 @@ export const router = createBrowserRouter([
       {
         path: "/promotions/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/promotions/${params.id}`),
+          fetch(
+            `https://chetona-server-eight.vercel.app/promotions/${params.id}`
+          ),
         element: <Promotion />,
       },
     ],

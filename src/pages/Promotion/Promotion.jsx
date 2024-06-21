@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { useLoaderData } from "react-router-dom";
 
@@ -43,40 +44,41 @@ export default function Promotion() {
     else setDeliveryCharge(120);
   }, [userDetails]);
 
-  console.log(userDetails.userDistrict);
-
   return (
     <section className="bg-white m-2 sm:m-10">
+      <Helmet>
+        <title>ChetonaProkashon - {promotionDetails?.name}</title>
+      </Helmet>
       <div className="container">
         <div className="p-2 sm:p-4 md:p-10 lg:p-20">
           {/* Page title */}
           <div className="flex flex-col space-y-5 mb-5">
             <h2 className="bg-primary p-4 md:text-2xl lg:text-4xl font-bold text-white text-center">
-              {promotionDetails.title}
+              {promotionDetails?.title}
             </h2>
             <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
-              {promotionDetails.warn}
+              {promotionDetails?.warn}
             </h4>
             <h5 className="text-center text-xl md:text-2xl lg:text-3xl">
-              {promotionDetails.subWarn}
+              {promotionDetails?.subWarn}
             </h5>
           </div>
           {/* Promotion short desc */}
           <div className="md:flex items-center justify-center bg-primary px-4 py-2 mb-5">
             <img
               className="w-[50%] mx-auto md:mx-0"
-              src={promotionDetails.image}
+              src={promotionDetails?.image}
               alt=""
             />
             <div className="flex flex-col space-y-16">
-              <p className="text-xl">{promotionDetails.imageCaption}</p>
-              <p className="text-xl">লেখকঃ {promotionDetails.writer}</p>
+              <p className="text-xl">{promotionDetails?.imageCaption}</p>
+              <p className="text-xl">লেখকঃ {promotionDetails?.writer}</p>
               <div>
                 <p className="text-xl">
-                  পুর্বের হাদিয়াঃ {promotionDetails.price} টাকা
+                  পুর্বের হাদিয়াঃ {promotionDetails?.price} টাকা
                 </p>
                 <p className="text-xl">
-                  বর্তমান হাদিয়াঃ {promotionDetails.offerPrice} টাকা
+                  বর্তমান হাদিয়াঃ {promotionDetails?.offerPrice} টাকা
                 </p>
                 <button className="text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
                   <a href="#order">বইটি অর্ডার করতে চাই</a>
@@ -85,68 +87,72 @@ export default function Promotion() {
             </div>
           </div>
           {/* Bullet lists */}
-          <div>
-            <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
-              {promotionDetails.listTitle}
-            </h3>
-            <div className="bg-cyan-50 my-2 p-2">
-              <p className="text-lg md:text-xl lg:text-2xl my-2">
-                {promotionDetails.listHeaderText}
-              </p>
-              <ul className="text-sm sm:text-lg md:text-xl font-bold ml-1 md:ml-8 lg:ml-12">
-                <li className="mb-2 flex items-center">
-                  <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
-                  নামাযের মধ্যে টুপি পড়ে গেলে কী করতে হয়?
-                </li>
-                {promotionDetails.lists.map((list, i) => (
-                  <li key={i} className="mb-2 flex items-center">
+          {promotionDetails?.lists && (
+            <div>
+              <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
+                {promotionDetails?.listTitle}
+              </h3>
+              <div className="bg-cyan-50 my-2 p-2">
+                <p className="text-lg md:text-xl lg:text-2xl my-2">
+                  {promotionDetails?.listHeaderText}
+                </p>
+                <ul className="text-sm sm:text-lg md:text-xl font-bold ml-1 md:ml-8 lg:ml-12">
+                  <li className="mb-2 flex items-center">
                     <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
-                    {list}
+                    নামাযের মধ্যে টুপি পড়ে গেলে কী করতে হয়?
                   </li>
-                ))}
-              </ul>
-              <p className="text-lg md:text-xl lg:text-2xl my-2">
-                {promotionDetails.listFooterText}
-              </p>
+                  {promotionDetails?.lists.map((list, i) => (
+                    <li key={i} className="mb-2 flex items-center">
+                      <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
+                      {list}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-lg md:text-xl lg:text-2xl my-2">
+                  {promotionDetails?.listFooterText}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
           {/* Video Area */}
-          <div>
-            <div className="w-full h-[300px] md:h-[350px] lg:h-[500px]">
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${promotionDetails.youtubeLink}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+          {promotionDetails?.youtubeLink && (
+            <div>
+              <div className="w-full h-[300px] md:h-[350px] lg:h-[500px]">
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${promotionDetails?.youtubeLink}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <p className="text-lg md:text-xl lg:text-2xl text-slate-700 my-3">
+                {promotionDetails?.videoCaption}
+              </p>
+              <div className="flex justify-center">
+                <button className="text-xl font-bold text-white mt-2 py-2 px-12 bg-cyan-900 rounded-sm">
+                  <a href="#order">এখনি অর্ডার করুন!</a>
+                </button>
+              </div>
             </div>
-            <p className="text-lg md:text-xl lg:text-2xl text-slate-700 my-3">
-              {promotionDetails.videoCaption}
-            </p>
-            <div className="flex justify-center">
-              <button className="text-xl font-bold text-white mt-2 py-2 px-12 bg-cyan-900 rounded-sm">
-                <a href="#order">এখনি অর্ডার করুন!</a>
-              </button>
-            </div>
-          </div>
+          )}
           {/* Form area */}
           <div className="mt-12" id="order">
             <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold p-4">
-              {promotionDetails.orderTitle}
+              {promotionDetails?.orderTitle}
             </h3>
             <h5 className="bg-yellow-200 p-4 text-xl md:text-2xl">
-              {promotionDetails.orderWarn}
+              {promotionDetails?.orderWarn}
             </h5>
 
             <div className="mt-5 p-4 border-4 border-green-300">
-              <p className="text-4xl text-red-400">
+              <p className="text-xl md:text-2xl lg:text-4xl text-red-400">
                 সম্পুর্ন নিশ্চিত হয়ে, অর্ডার করতে আপনার নাম, ঠিকানা ও ফোন
                 নাম্বার লিখুন।।​
               </p>
 
-              <div className="flex justify-between space-x-12 mt-5">
-                <div className="w-1/2">
+              <div className="flex flex-col md:flex-row justify-between md:space-x-12 mt-5 space-y-12">
+                <div className=" md:w-1/2">
                   <h5 className="text-lg font-bold">Billing Details</h5>
                   <form onSubmit={handleConfirmOrder}>
                     {/* Input field */}
@@ -239,23 +245,23 @@ export default function Promotion() {
                     </div>
                   </form>
                 </div>
-                <div className="w-1/2 text-lg font-bold">
+                <div className=" md:w-1/2 text-lg font-bold">
                   <h5 className="text-lg font-bold">Your Order</h5>
 
                   <div className="flex items-center justify-between mt-5 border-t border-b">
                     <div className="flex items-center">
                       <img
-                        src={promotionDetails.image}
+                        src={promotionDetails?.image}
                         className="w-20"
                         alt=""
                       />
-                      <p>{promotionDetails.name}</p>
+                      <p>{promotionDetails?.name}</p>
                     </div>
-                    <p>{promotionDetails.offerPrice}.00 TK</p>
+                    <p>{promotionDetails?.offerPrice}.00 TK</p>
                   </div>
                   <div className="flex items-center justify-between mt-2">
                     <p>Subtotal</p>
-                    <p>{promotionDetails.offerPrice}.00 TK</p>
+                    <p>{promotionDetails?.offerPrice}.00 TK</p>
                   </div>
                   <div className="flex items-center justify-between mt-2 border-b">
                     <p>Shipping</p>
@@ -267,7 +273,7 @@ export default function Promotion() {
                   <div className="flex items-center justify-between mt-2">
                     <p>Total</p>
                     <p>
-                      {promotionDetails.offerPrice + deliveryCharge}
+                      {promotionDetails?.offerPrice + deliveryCharge}
                       .00 TK
                     </p>
                   </div>
