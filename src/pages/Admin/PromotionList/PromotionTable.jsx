@@ -1,7 +1,12 @@
 import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-export default function PromotionTable({ promotions, onEditPromotion }) {
+export default function PromotionTable({
+  promotions,
+  onEditPromotion,
+  onDeletePromotion,
+}) {
   return (
     <div className="w-full overflow-x-auto">
       <table
@@ -50,7 +55,9 @@ export default function PromotionTable({ promotions, onEditPromotion }) {
           {promotions.map((promotion) => (
             <tr key={promotion._id} className="odd:bg-slate-50">
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                <img src={promotion.image} className="h-16" alt="" />
+                <Link to={`/promotions/${promotion._id}`}>
+                  <img src={promotion.image} className="h-16" alt="" />
+                </Link>
               </td>
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
                 {promotion.name}
@@ -71,7 +78,10 @@ export default function PromotionTable({ promotions, onEditPromotion }) {
                 </button>
               </td>
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                <button className="flex items-center space-x-2">
+                <button
+                  className="flex items-center space-x-2"
+                  onClick={() => onDeletePromotion(promotion._id)}
+                >
                   <MdDelete />
                   <span>Delete</span>
                 </button>

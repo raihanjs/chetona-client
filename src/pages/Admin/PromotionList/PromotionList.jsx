@@ -1,29 +1,28 @@
 import { useState } from "react";
-import usePromotions from "../../../hooks/usePromotions";
-import PromotionAction from "./PromotionAction";
 
 import PromotionTable from "./PromotionTable";
 import PromotionModal from "./PromotionModal";
+import PromotionAction from "./PromotionAction";
+import usePromotions from "../../../hooks/usePromotions";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 export default function PromotionList() {
+  const axiosPublic = useAxiosPublic();
   const [showModal, setShowModal] = useState(false);
-  const [promotions, setPromotions] = usePromotions();
+  const [promotions, isLoading, refetch] = usePromotions();
   const [updatePromotion, setUpdatePromotion] = useState(null);
 
-  console.log(promotions);
-
   const handleAddPromotion = (newPromotion, isAdd) => {
-    if (isAdd) setPromotions([...promotions, newPromotion]);
-    else
-      setPromotions(
-        promotions.map((promotion) => {
-          if (promotion._id === newPromotion._id) {
-            return newPromotion;
-          } else {
-            return promotion;
-          }
-        })
-      );
+    if (isAdd) {
+      axiosPublic
+        .post("/promotions", newPromotion)
+        .then((res) => res.data.insertedId && refetch());
+    } else {
+      axiosPublic
+        .patch(`/promotions/${newPromotion._id}`, newPromotion)
+        .then((res) => res.data.modifiedCount && refetch());
+    }
+
     setShowModal(false);
     setUpdatePromotion(null);
   };
@@ -31,6 +30,12 @@ export default function PromotionList() {
   const handleEditPromotion = (promotion) => {
     setShowModal(true);
     setUpdatePromotion(promotion);
+  };
+
+  const handleDeletePromotion = (promotionId) => {
+    axiosPublic
+      .delete(`/promotions/${promotionId}`)
+      .then((res) => res.data.deletedCount === 1 && refetch());
   };
 
   const handleCloseModal = () => {
@@ -53,6 +58,7 @@ export default function PromotionList() {
         onClikAdd={() => setShowModal(true)}
       />
       <PromotionTable
+        onDeletePromotion={handleDeletePromotion}
         promotions={promotions}
         onEditPromotion={handleEditPromotion}
       />

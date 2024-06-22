@@ -8,7 +8,6 @@ export default function PromotionModal({
 }) {
   const [promotion, setPromotion] = useState(
     updatePromotion || {
-      _id: crypto.randomUUID(),
       title: "",
       warn: "",
       subWarn: "",

@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "./useAxiosPublic";
 
 export default function usePromotions() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [promotions, setPromotions] = useState([]);
-
-  useEffect(() => {
-    fetch("https://chetona-server-eight.vercel.app/promotions")
-      .then((res) => res.json())
-      .then((data) => setPromotions(data));
-  }, []);
-
-  return [promotions, setPromotions, isLoading];
+  const axiosPublic = useAxiosPublic();
+  const {
+    data: promotions = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["promotions"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/promotions");
+      return res.data;
+    },
+  });
+  return [promotions, isLoading, refetch];
 }
