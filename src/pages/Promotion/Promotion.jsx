@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { useLoaderData } from "react-router-dom";
+import FacebookPixel from "./FacebookPixel";
 
 export default function Promotion() {
   const promotionDetails = useLoaderData();
@@ -46,6 +47,7 @@ export default function Promotion() {
 
   return (
     <section className="bg-white m-2 sm:m-10">
+      <FacebookPixel />
       <Helmet>
         <title>ChetonaProkashon - {promotionDetails?.name}</title>
       </Helmet>
