@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { useLoaderData } from "react-router-dom";
-import FacebookPixel from "./FacebookPixel";
+// import FacebookPixel from "./FacebookPixel";
 
 export default function Promotion() {
   const promotionDetails = useLoaderData();
@@ -45,10 +45,21 @@ export default function Promotion() {
     else setDeliveryCharge(120);
   }, [userDetails]);
 
+  const pixel = promotionDetails?.pixel?.toString();
+  // Script from pixel
+  const scriptStart = pixel?.indexOf("<script>");
+  const scriptEnd = pixel?.indexOf("</script>");
+  const script = pixel?.slice(scriptStart + 8, scriptEnd);
+  // No Script from pixel
+  const noScriptStart = pixel?.indexOf("<noscript>");
+  const noScriptEnd = pixel?.indexOf("</noscript>");
+  const noScript = pixel?.slice(noScriptStart + 10, noScriptEnd);
+
   return (
     <section className="bg-white m-2 sm:m-10">
-      <FacebookPixel />
       <Helmet>
+        <script>{script}</script>
+        <noscript>{noScript}</noscript>
         <title>ChetonaProkashon - {promotionDetails?.name}</title>
       </Helmet>
       <div className="container">
@@ -66,7 +77,7 @@ export default function Promotion() {
             </h5>
           </div>
           {/* Promotion short desc */}
-          <div className="md:flex items-center justify-center bg-primary px-4 py-2 mb-5">
+          <div className="md:flex items-center justify-center space-x-5 bg-primary px-4 py-2 mb-5">
             <img
               className="w-[50%] mx-auto md:mx-0"
               src={promotionDetails?.image}
@@ -254,7 +265,7 @@ export default function Promotion() {
                     <div className="flex items-center">
                       <img
                         src={promotionDetails?.image}
-                        className="w-20"
+                        className="w-20 p-3"
                         alt=""
                       />
                       <p>{promotionDetails?.name}</p>
@@ -275,7 +286,8 @@ export default function Promotion() {
                   <div className="flex items-center justify-between mt-2">
                     <p>Total</p>
                     <p>
-                      {promotionDetails?.offerPrice + deliveryCharge}
+                      {Number(promotionDetails?.offerPrice) +
+                        Number(deliveryCharge)}
                       .00 TK
                     </p>
                   </div>
