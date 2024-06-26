@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 // import FacebookPixel from "./FacebookPixel";
 
 export default function Promotion() {
+  const navigate = useNavigate()
   const promotionDetails = useLoaderData();
   const [userDetails, setUserDetails] = useState({
     userName: "",
@@ -29,7 +30,8 @@ export default function Promotion() {
 
   const handleConfirmOrder = (e) => {
     e.preventDefault();
-    console.log(userDetails);
+    console.log(userDetails.userName);
+    navigate('/promotions/thankspage', {state : {userName: userDetails.userName}})
   };
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function Promotion() {
         <div className="p-2 sm:p-4 md:p-10 lg:p-20">
           {/* Page title */}
           <div className="flex flex-col space-y-5 mb-5">
-            <h2 className="bg-primary p-4 md:text-2xl lg:text-4xl font-bold text-white text-center">
+            <h2 className="bg-primary p-4 text-2xl lg:text-4xl font-bold text-white text-center">
               {promotionDetails?.title}
             </h2>
             {promotionDetails?.warn && <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
@@ -70,13 +72,13 @@ export default function Promotion() {
             </h5>}
           </div>
           {/* Promotion short desc */}
-          <div className="md:flex items-center justify-center space-x-5 bg-primary px-4 py-2 mb-5">
+          <div className="md:flex items-center justify-center md:space-x-5 bg-cyan-50 border-4 border-primary px-4 py-2 pb-4 md:pb-2 mb-5">
             <img
               className="md:w-[50%] mx-auto md:mx-0"
               src={promotionDetails?.image}
               alt=""
             />
-            <div className="flex flex-col space-y-16">
+            <div className="flex flex-col md:space-y-16">
               <p className="text-xl">{promotionDetails?.imageCaption}</p>
               <div>
               <p className="text-xl">লেখকঃ {promotionDetails?.writer}</p>
@@ -87,7 +89,7 @@ export default function Promotion() {
                 <p className="text-xl">
                   ছাড় মূল্যঃ {promotionDetails?.offerPrice} টাকা
                 </p>
-                <button className="text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
+                <button className="text-sm md:text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
                   <a >কিছু পৃষ্ঠা পড়ে দেখতে এখানে ক্লিক করুন</a>
                 </button>
               </div>
