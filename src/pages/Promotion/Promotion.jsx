@@ -13,15 +13,9 @@ export default function Promotion() {
     userAddress: "",
   });
   const districts = [
+    "",
     "dhaka",
-    "comilla",
-    "chittagong",
-    "rajshahi",
-    "gazipur",
-    "narayanganj",
-    "barisal",
-    "sylhet",
-    "mymensingh",
+    "outside dhaka",
   ];
   const [deliveryCharge, setDeliveryCharge] = useState(0);
 
@@ -39,10 +33,9 @@ export default function Promotion() {
   };
 
   useEffect(() => {
-    if (userDetails.userDistrict === "dhaka") setDeliveryCharge(60);
-    else if (userDetails.userDistrict === "gazipur") setDeliveryCharge(60);
-    else if (userDetails.userDistrict === "narayanganj") setDeliveryCharge(60);
-    else setDeliveryCharge(120);
+     if(userDetails.userDistrict === "") setDeliveryCharge(0)
+     else if (userDetails.userDistrict === "dhaka") setDeliveryCharge(60);
+    else setDeliveryCharge(100);
   }, [userDetails]);
 
   const pixel = promotionDetails?.pixel?.toString();
@@ -69,58 +62,61 @@ export default function Promotion() {
             <h2 className="bg-primary p-4 md:text-2xl lg:text-4xl font-bold text-white text-center">
               {promotionDetails?.title}
             </h2>
-            <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
+            {promotionDetails?.warn && <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
               {promotionDetails?.warn}
-            </h4>
-            <h5 className="text-center text-xl md:text-2xl lg:text-3xl">
+            </h4>}
+            {promotionDetails?.subWarn && <h5 className="text-center text-xl md:text-2xl lg:text-3xl">
               {promotionDetails?.subWarn}
-            </h5>
+            </h5>}
           </div>
           {/* Promotion short desc */}
           <div className="md:flex items-center justify-center space-x-5 bg-primary px-4 py-2 mb-5">
             <img
-              className="w-[50%] mx-auto md:mx-0"
+              className="md:w-[50%] mx-auto md:mx-0"
               src={promotionDetails?.image}
               alt=""
             />
             <div className="flex flex-col space-y-16">
               <p className="text-xl">{promotionDetails?.imageCaption}</p>
-              <p className="text-xl">লেখকঃ {promotionDetails?.writer}</p>
               <div>
+              <p className="text-xl">লেখকঃ {promotionDetails?.writer}</p>
+                {promotionDetails?.pages && <p className="text-xl">পৃষ্ঠা সংখ্যাঃ {promotionDetails?.pages}</p>}
                 <p className="text-xl">
-                  পুর্বের হাদিয়াঃ {promotionDetails?.price} টাকা
+                  প্রচ্ছদ মূল্যঃ {promotionDetails?.price} টাকা
                 </p>
                 <p className="text-xl">
-                  বর্তমান হাদিয়াঃ {promotionDetails?.offerPrice} টাকা
+                  ছাড় মূল্যঃ {promotionDetails?.offerPrice} টাকা
                 </p>
                 <button className="text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
-                  <a href="#order">বইটি অর্ডার করতে চাই</a>
+                  <a >কিছু পৃষ্ঠা পড়ে দেখতে এখানে ক্লিক করুন</a>
                 </button>
               </div>
             </div>
           </div>
+          {/* Order Button  */}
+          <div className="flex justify-center mb-5">
+          <button className="text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-green-600 rounded-sm">
+                  <a href="#order">বইটি অর্ডার করতে চাই</a>
+                </button>
+          </div>
           {/* Bullet lists */}
-          {promotionDetails?.lists && (
+          {promotionDetails?.lists.length > 0 && (
             <div>
-              <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
+              {promotionDetails?.listTitle && <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
                 {promotionDetails?.listTitle}
-              </h3>
+              </h3>}
               <div className="bg-cyan-50 my-2 p-2">
                 <p className="text-lg md:text-xl lg:text-2xl my-2">
                   {promotionDetails?.listHeaderText}
                 </p>
-                <ul className="text-sm sm:text-lg md:text-xl font-bold ml-1 md:ml-8 lg:ml-12">
-                  <li className="mb-2 flex items-center">
-                    <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
-                    নামাযের মধ্যে টুপি পড়ে গেলে কী করতে হয়?
-                  </li>
+                {promotionDetails?.lists.length > 0 && <ul className="text-sm sm:text-lg md:text-xl font-bold ml-1 md:ml-8 lg:ml-12 lg:grid grid-cols-2">
                   {promotionDetails?.lists.map((list, i) => (
                     <li key={i} className="mb-2 flex items-center">
-                      <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
+                      <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />
                       {list}
                     </li>
                   ))}
-                </ul>
+                </ul>}
                 <p className="text-lg md:text-xl lg:text-2xl my-2">
                   {promotionDetails?.listFooterText}
                 </p>
@@ -143,30 +139,30 @@ export default function Promotion() {
                 {promotionDetails?.videoCaption}
               </p>
               <div className="flex justify-center">
-                <button className="text-xl font-bold text-white mt-2 py-2 px-12 bg-cyan-900 rounded-sm">
-                  <a href="#order">এখনি অর্ডার করুন!</a>
+                <button className="text-xl font-bold text-white mt-2 py-2 px-12 bg-green-600 rounded-sm">
+                  <a href="#order">এখনই অর্ডার করুন!</a>
                 </button>
               </div>
             </div>
           )}
           {/* Form area */}
           <div className="mt-12" id="order">
-            <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold p-4">
+            {promotionDetails?.orderTitle && <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold p-4">
               {promotionDetails?.orderTitle}
-            </h3>
-            <h5 className="bg-yellow-200 p-4 text-xl md:text-2xl">
+            </h3>}
+            {promotionDetails?.orderWarn && <h5 className="bg-yellow-200 p-4 text-xl md:text-2xl">
               {promotionDetails?.orderWarn}
-            </h5>
+            </h5>}
 
-            <div className="mt-5 p-4 border-4 border-green-300">
+            <div className="mt-5 p-4 border-4 border-primary">
               <p className="text-xl md:text-2xl lg:text-4xl text-red-400">
                 সম্পুর্ন নিশ্চিত হয়ে, অর্ডার করতে আপনার নাম, ঠিকানা ও ফোন
                 নাম্বার লিখুন।।​
               </p>
 
-              <div className="flex flex-col md:flex-row justify-between md:space-x-12 mt-5 space-y-12">
+              <div className="flex flex-col flex-col-reverse md:flex-row justify-between md:space-x-12 mt-5 space-y-12">
                 <div className=" md:w-1/2">
-                  <h5 className="text-lg font-bold">Billing Details</h5>
+                  <h5 className="text-lg font-bold mt-12 md:mt-0">Billing Details</h5>
                   <form onSubmit={handleConfirmOrder}>
                     {/* Input field */}
                     <div className="flex flex-col space-y-1 mt-5">
@@ -235,9 +231,10 @@ export default function Promotion() {
                         htmlFor="customerAddress"
                         className="text-lg font-bold"
                       >
-                        আপনার ঠিকানা
+                        বিস্তারিত ঠিকানা
                         <span className="text-red-600"> *</span>
                       </label>
+                    <div className="xs">বাড়ি, গ্রাম, রাস্তা, মোড়, বাজার ইত্যাদি</div>
                       <input
                         id="customerAddress"
                         type="text"
@@ -253,7 +250,7 @@ export default function Promotion() {
                       <input
                         type="submit"
                         value="কনফার্ম অর্ডার"
-                        className="text-xl font-bold text-white mt-2 py-2 px-12 bg-cyan-900 rounded-sm cursor-pointer"
+                        className="text-xl font-bold text-white mt-2 py-2 px-12 bg-green-600 rounded-sm cursor-pointer"
                       />
                     </div>
                   </form>
@@ -293,7 +290,7 @@ export default function Promotion() {
                   </div>
 
                   <div className="p-3 bg-gray-300 mt-5">
-                    <p>ক্যাশ অন ডেলিভারি</p>
+                    <p className="flex items-center"><span className="text-red-600 mr-1">*</span> ক্যাশ অন ডেলিভারি</p>
                     <p className="bg-gray-400 p-2">
                       পণ্য হাতে পেয়ে টাকা পরিশোধ
                     </p>
