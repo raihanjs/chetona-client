@@ -84,10 +84,10 @@ export default function Promotion() {
               <div>
               <p className="text-xl mt-5">লেখকঃ {promotionDetails?.writer}</p>
                 {promotionDetails?.pages && <p className="text-xl">পৃষ্ঠা সংখ্যাঃ {promotionDetails?.pages}</p>}
-                <p className="text-xl">
+                <p className="text-xl font-bold">
                   প্রচ্ছদ মূল্যঃ {promotionDetails?.price} টাকা
                 </p>
-                <p className="text-xl mb-5">
+                <p className="text-xl font-bold text-red-500 mb-5">
                   ছাড় মূল্যঃ {promotionDetails?.offerPrice} টাকা
                 </p>
                 <button className="flex justify-center mx-auto text-[17px] md:text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
@@ -157,15 +157,10 @@ export default function Promotion() {
               {promotionDetails?.orderWarn}
             </h5>}
 
-            <div className="mt-1 md:mt-5 p-4 border-4 border-primary">
-              <p className="text-xl md:text-2xl lg:text-4xl text-red-400">
-                সম্পুর্ন নিশ্চিত হয়ে, অর্ডার করতে আপনার নাম, ঠিকানা ও ফোন
-                নাম্বার লিখুন।।​
-              </p>
-
-              <div className="flex flex-col flex-col-reverse md:flex-row justify-between md:space-x-12 mt-5 space-y-12">
+            <div className=" px-4 border-4 border-primary">
+              <div className="flex flex-col flex-col-reverse md:flex-row justify-between md:space-x-12 space-y-12">
                 <div className=" md:w-1/2">
-                  <h5 className="text-lg font-bold mt-12 md:mt-0">Billing Details</h5>
+                  <h5 className="text-lg font-bold mt-4">Billing Details</h5>
                   <form onSubmit={handleConfirmOrder}>
                     {/* Input field */}
                     <div className="flex flex-col space-y-1 mt-5">
@@ -292,7 +287,7 @@ export default function Promotion() {
                 </div>
                     {/* Mobile Order Details */}
                     {/* Input field */}
-                    <div className="mt-5">
+                    <div className="mt-5 mb-3">
                       <input
                         type="submit"
                         value="কনফার্ম অর্ডার"
