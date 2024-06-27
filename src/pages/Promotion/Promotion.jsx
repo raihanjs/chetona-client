@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { useLoaderData, useNavigate } from "react-router-dom";
-// import FacebookPixel from "./FacebookPixel";
+import test from './../../assets/images/keno-porben-polashi-4.jpg'
 
 export default function Promotion() {
   const navigate = useNavigate()
@@ -61,7 +61,7 @@ export default function Promotion() {
         <div className="p-2 sm:p-4 md:p-10 lg:p-20">
           {/* Page title */}
           <div className="flex flex-col space-y-5 mb-5">
-            <h2 className="bg-primary p-4 text-2xl lg:text-4xl font-bold text-white text-center">
+            <h2 className="bg-primary p-4 text-xl md:text-2xl lg:text-4xl font-bold text-white text-center">
               {promotionDetails?.title}
             </h2>
             {promotionDetails?.warn && <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
@@ -74,22 +74,23 @@ export default function Promotion() {
           {/* Promotion short desc */}
           <div className="md:flex items-center justify-center md:space-x-5 bg-cyan-50 border-4 border-primary px-4 py-2 pb-4 md:pb-2 mb-5">
             <img
-              className="md:w-[50%] mx-auto md:mx-0"
-              src={promotionDetails?.image}
+              className="md:w-[50%] mx-auto mt-2 md:mt-0 md:mx-0"
+              // src={promotionDetails?.image}
+              src={test}
               alt=""
             />
             <div className="flex flex-col md:space-y-16">
-              <p className="text-xl">{promotionDetails?.imageCaption}</p>
+              <p className="text-xl mt-5 md:mt-0">{promotionDetails?.imageCaption}</p>
               <div>
-              <p className="text-xl">লেখকঃ {promotionDetails?.writer}</p>
+              <p className="text-xl mt-5">লেখকঃ {promotionDetails?.writer}</p>
                 {promotionDetails?.pages && <p className="text-xl">পৃষ্ঠা সংখ্যাঃ {promotionDetails?.pages}</p>}
                 <p className="text-xl">
                   প্রচ্ছদ মূল্যঃ {promotionDetails?.price} টাকা
                 </p>
-                <p className="text-xl">
+                <p className="text-xl mb-5">
                   ছাড় মূল্যঃ {promotionDetails?.offerPrice} টাকা
                 </p>
-                <button className="text-sm md:text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
+                <button className="flex justify-center mx-auto text-[17px] md:text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
                   <a >কিছু পৃষ্ঠা পড়ে দেখতে এখানে ক্লিক করুন</a>
                 </button>
               </div>
@@ -102,7 +103,7 @@ export default function Promotion() {
                 </button>
           </div>
           {/* Bullet lists */}
-          {promotionDetails?.lists.length > 0 && (
+          {promotionDetails?.lists.length > 1 && (
             <div>
               {promotionDetails?.listTitle && <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
                 {promotionDetails?.listTitle}
@@ -149,14 +150,14 @@ export default function Promotion() {
           )}
           {/* Form area */}
           <div className="mt-12" id="order">
-            {promotionDetails?.orderTitle && <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold p-4">
+            {promotionDetails?.orderTitle && <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold px-4">
               {promotionDetails?.orderTitle}
             </h3>}
             {promotionDetails?.orderWarn && <h5 className="bg-yellow-200 p-4 text-xl md:text-2xl">
               {promotionDetails?.orderWarn}
             </h5>}
 
-            <div className="mt-5 p-4 border-4 border-primary">
+            <div className="mt-1 md:mt-5 p-4 border-4 border-primary">
               <p className="text-xl md:text-2xl lg:text-4xl text-red-400">
                 সম্পুর্ন নিশ্চিত হয়ে, অর্ডার করতে আপনার নাম, ঠিকানা ও ফোন
                 নাম্বার লিখুন।।​
@@ -236,7 +237,7 @@ export default function Promotion() {
                         বিস্তারিত ঠিকানা
                         <span className="text-red-600"> *</span>
                       </label>
-                    <div className="xs">বাড়ি, গ্রাম, রাস্তা, মোড়, বাজার ইত্যাদি</div>
+                    <div className="xs">বাড়ি, গ্রাম, রাস্তা, মোড়, বাজার, থানা ইত্যাদি</div>
                       <input
                         id="customerAddress"
                         type="text"
@@ -247,6 +248,49 @@ export default function Promotion() {
                         onChange={(e) => handleChange(e)}
                       />
                     </div>
+                    {/* Mobile Order Details */}
+                    <div className=" block md:hidden text-lg font-bold">
+                  <h5 className="text-lg font-bold mt-5">Your Order</h5>
+
+                  <div className="flex items-center justify-between mt-1 border-t border-b">
+                    <div className="flex items-center">
+                      <img
+                        src={promotionDetails?.image}
+                        className="w-20 p-3"
+                        alt=""
+                      />
+                      <p>{promotionDetails?.name}</p>
+                    </div>
+                    <p>{promotionDetails?.offerPrice}.00 TK</p>
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p>Price</p>
+                    <p>{promotionDetails?.offerPrice}.00 TK</p>
+                  </div>
+                  <div className="flex items-center justify-between mt-2 border-b">
+                    <p>Courier Charge</p>
+                    <p>
+                      {deliveryCharge}
+                      .00 TK
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p>Total</p>
+                    <p>
+                      {Number(promotionDetails?.offerPrice) +
+                        Number(deliveryCharge)}
+                      .00 TK
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-gray-300 mt-5">
+                    <p className="flex items-center"><span className="text-red-600 mr-1">*</span> ক্যাশ অন ডেলিভারি</p>
+                    <p className="bg-gray-400 p-2">
+                      পণ্য হাতে পেয়ে টাকা পরিশোধ
+                    </p>
+                  </div>
+                </div>
+                    {/* Mobile Order Details */}
                     {/* Input field */}
                     <div className="mt-5">
                       <input
@@ -257,7 +301,7 @@ export default function Promotion() {
                     </div>
                   </form>
                 </div>
-                <div className=" md:w-1/2 text-lg font-bold">
+                <div className=" hidden md:block w-1/2 text-lg font-bold">
                   <h5 className="text-lg font-bold">Your Order</h5>
 
                   <div className="flex items-center justify-between mt-5 border-t border-b">
@@ -272,11 +316,11 @@ export default function Promotion() {
                     <p>{promotionDetails?.offerPrice}.00 TK</p>
                   </div>
                   <div className="flex items-center justify-between mt-2">
-                    <p>Subtotal</p>
+                    <p>Price</p>
                     <p>{promotionDetails?.offerPrice}.00 TK</p>
                   </div>
                   <div className="flex items-center justify-between mt-2 border-b">
-                    <p>Shipping</p>
+                    <p>Courier Charge</p>
                     <p>
                       {deliveryCharge}
                       .00 TK

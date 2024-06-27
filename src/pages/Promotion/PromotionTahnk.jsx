@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from './../../assets/images/logo.png'
 import { FaFacebook } from "react-icons/fa";
 
@@ -17,7 +17,7 @@ export default function PromotionTahnk () {
                 <p className='text-lg  mb-1'>আমাদের সাথে যুক্ত থাকার জন্য ফেসবুক পেইজে লাইক দিন</p>
                 {/* <div className='relative'> */}
                     {/* <FaFacebook className='absolute top-0 left-0 text-white text-6xl'/> */}
-                <button className='w-full py-2 md:py-4 px-4 md:px-12 bg-primary text-white text-xl font-bold flex justify-center items-center'><FaFacebook className='mr-2 text-2xl'/> <span className='border-b'><a href="https://www.facebook.com/chetonaprokashon">চেতনা প্রকাশন</a></span></button>
+                <Link to="https://www.facebook.com/chetonaprokashon" className='w-full py-2 md:py-4 px-4 md:px-12 bg-primary text-white text-xl font-bold flex justify-center items-center'><FaFacebook className='mr-2 text-2xl'/> <span className='border-b'>চেতনা প্রকাশন</span></Link>
                 {/* </div>  */}
             </div>
         </div>
