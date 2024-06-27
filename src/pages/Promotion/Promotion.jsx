@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import test from './../../assets/images/keno-porben-polashi-4.jpg'
 
 export default function Promotion() {
   const navigate = useNavigate()
@@ -75,8 +74,7 @@ export default function Promotion() {
           <div className="md:flex items-center justify-center md:space-x-5 bg-cyan-50 border-4 border-primary px-4 py-2 pb-4 md:pb-2 mb-5">
             <img
               className="md:w-[50%] mx-auto mt-2 md:mt-0 md:mx-0"
-              // src={promotionDetails?.image}
-              src={test}
+              src={promotionDetails?.image}
               alt=""
             />
             <div className="flex flex-col md:space-y-16">
