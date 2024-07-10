@@ -10,6 +10,7 @@ import WriterList from "../pages/Admin/WriterList/WriterList";
 import PromotionList from "../pages/Admin/PromotionList/PromotionList";
 import CategoryList from "../pages/Admin/CategoryList/CategoryList";
 import Promotion from "../pages/Promotion/Promotion";
+import PromotionTahnk from "../pages/Promotion/PromotionTahnk";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
           ),
         element: <Promotion />,
       },
+      {
+        path:"/promotions/thankspage",
+        element: <PromotionTahnk/>
+      }
     ],
   },
   {

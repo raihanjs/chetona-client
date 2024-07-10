@@ -14,6 +14,7 @@ export default function PromotionModal({
       image: "",
       imageCaption: "",
       writer: "",
+      pages:"",
       price: "",
       offerPrice: "",
       listTitle: "",
@@ -113,7 +114,8 @@ export default function PromotionModal({
           />
         </div>
         {/* Book Name */}
-        <div className="flex flex-col space-y-1">
+        <div className="flex justify-between items-center space-x-5">
+          <div className="flex flex-col space-y-1 w-7/12">
           <label htmlFor="bookName">Book Name</label>
           <input
             type="text"
@@ -123,11 +125,10 @@ export default function PromotionModal({
             value={promotion.name}
             onChange={handleChange}
           />
-        </div>
-        {/* Writer, Price & Offer Price  */}
-        <div className="flex justify-between items-center space-x-5">
-          {/* Writer */}
-          <div className="flex flex-col space-y-1 w-6/12">
+          </div>
+
+                    {/* Writer */}
+                    <div className="flex flex-col space-y-1 w-5/12">
             <label htmlFor="writer">Writer Name</label>
             <input
               type="text"
@@ -138,8 +139,24 @@ export default function PromotionModal({
               onChange={handleChange}
             />
           </div>
+      </div>
+        {/* Writer, Price & Offer Price  */}
+        <div className="flex justify-between items-center space-x-5">
+
+          {/* Pages */}
+          <div className="flex flex-col space-y-1 w-4/12">
+            <label htmlFor="price">Pages</label>
+            <input
+              type="number"
+              id="pages"
+              className="p-2 rounded-md"
+              name="pages"
+              value={promotion.pages}
+              onChange={handleChange}
+            />
+          </div>
           {/* Price */}
-          <div className="flex flex-col space-y-1 w-3/12">
+          <div className="flex flex-col space-y-1 w-4/12">
             <label htmlFor="price">Price</label>
             <input
               type="number"
@@ -151,7 +168,7 @@ export default function PromotionModal({
             />
           </div>
           {/* Offer Price */}
-          <div className="flex flex-col space-y-1 w-3/12">
+          <div className="flex flex-col space-y-1 w-4/12">
             <label htmlFor="offerPrice">Offer Price</label>
             <input
               type="number"

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
-import { useLoaderData } from "react-router-dom";
-// import FacebookPixel from "./FacebookPixel";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 export default function Promotion() {
+  const navigate = useNavigate()
   const promotionDetails = useLoaderData();
   const [userDetails, setUserDetails] = useState({
     userName: "",
@@ -13,15 +13,9 @@ export default function Promotion() {
     userAddress: "",
   });
   const districts = [
+    "",
     "dhaka",
-    "comilla",
-    "chittagong",
-    "rajshahi",
-    "gazipur",
-    "narayanganj",
-    "barisal",
-    "sylhet",
-    "mymensingh",
+    "outside dhaka",
   ];
   const [deliveryCharge, setDeliveryCharge] = useState(0);
 
@@ -35,14 +29,14 @@ export default function Promotion() {
 
   const handleConfirmOrder = (e) => {
     e.preventDefault();
-    console.log(userDetails);
+    console.log(userDetails.userName);
+    navigate('/promotions/thankspage', {state : {userName: userDetails.userName}})
   };
 
   useEffect(() => {
-    if (userDetails.userDistrict === "dhaka") setDeliveryCharge(60);
-    else if (userDetails.userDistrict === "gazipur") setDeliveryCharge(60);
-    else if (userDetails.userDistrict === "narayanganj") setDeliveryCharge(60);
-    else setDeliveryCharge(120);
+     if(userDetails.userDistrict === "") setDeliveryCharge(0)
+     else if (userDetails.userDistrict === "dhaka") setDeliveryCharge(60);
+    else setDeliveryCharge(100);
   }, [userDetails]);
 
   const pixel = promotionDetails?.pixel?.toString();
@@ -66,61 +60,64 @@ export default function Promotion() {
         <div className="p-2 sm:p-4 md:p-10 lg:p-20">
           {/* Page title */}
           <div className="flex flex-col space-y-5 mb-5">
-            <h2 className="bg-primary p-4 md:text-2xl lg:text-4xl font-bold text-white text-center">
+            <h2 className="bg-primary p-4 text-xl md:text-2xl lg:text-4xl font-bold text-white text-center">
               {promotionDetails?.title}
             </h2>
-            <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
+            {promotionDetails?.warn && <h4 className="border-2 border-red-200 p-4 text-xl md:text-2xl lg:text-3xl text-center text-red-500">
               {promotionDetails?.warn}
-            </h4>
-            <h5 className="text-center text-xl md:text-2xl lg:text-3xl">
+            </h4>}
+            {promotionDetails?.subWarn && <h5 className="text-center text-xl md:text-2xl lg:text-3xl">
               {promotionDetails?.subWarn}
-            </h5>
+            </h5>}
           </div>
           {/* Promotion short desc */}
-          <div className="md:flex items-center justify-center space-x-5 bg-primary px-4 py-2 mb-5">
+          <div className="md:flex items-center justify-center md:space-x-5 bg-cyan-50 border-4 border-primary px-4 py-2 pb-4 md:pb-2 mb-5">
             <img
-              className="w-[50%] mx-auto md:mx-0"
+              className="md:w-[50%] mx-auto mt-2 md:mt-0 md:mx-0"
               src={promotionDetails?.image}
               alt=""
             />
-            <div className="flex flex-col space-y-16">
-              <p className="text-xl">{promotionDetails?.imageCaption}</p>
-              <p className="text-xl">লেখকঃ {promotionDetails?.writer}</p>
+            <div className="flex flex-col md:space-y-16">
+              <p className="text-xl mt-5 md:mt-0">{promotionDetails?.imageCaption}</p>
               <div>
-                <p className="text-xl">
-                  পুর্বের হাদিয়াঃ {promotionDetails?.price} টাকা
+              <p className="text-xl mt-5">লেখকঃ {promotionDetails?.writer}</p>
+                {promotionDetails?.pages && <p className="text-xl">পৃষ্ঠা সংখ্যাঃ {promotionDetails?.pages}</p>}
+                <p className="text-xl font-bold">
+                  প্রচ্ছদ মূল্যঃ {promotionDetails?.price} টাকা
                 </p>
-                <p className="text-xl">
-                  বর্তমান হাদিয়াঃ {promotionDetails?.offerPrice} টাকা
+                <p className="text-xl font-bold text-red-500 mb-5">
+                  ছাড় মূল্যঃ {promotionDetails?.offerPrice} টাকা
                 </p>
-                <button className="text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
-                  <a href="#order">বইটি অর্ডার করতে চাই</a>
+                <button className="flex justify-center mx-auto text-[17px] md:text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-cyan-900 rounded-sm">
+                  <a >কিছু পৃষ্ঠা পড়ে দেখতে এখানে ক্লিক করুন</a>
                 </button>
               </div>
             </div>
           </div>
+          {/* Order Button  */}
+          <div className="flex justify-center mb-5">
+          <button className="text-xl font-bold text-white mt-2 py-2 px-5 md:px-12 bg-green-600 rounded-sm">
+                  <a href="#order">বইটি অর্ডার করতে চাই</a>
+                </button>
+          </div>
           {/* Bullet lists */}
-          {promotionDetails?.lists && (
+          {promotionDetails?.lists.length > 1 && (
             <div>
-              <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
+              {promotionDetails?.listTitle && <h3 className="text-center md:text-2xl lg:text-4xl text-cyan-900 font-bold bg-primary p-4">
                 {promotionDetails?.listTitle}
-              </h3>
+              </h3>}
               <div className="bg-cyan-50 my-2 p-2">
                 <p className="text-lg md:text-xl lg:text-2xl my-2">
                   {promotionDetails?.listHeaderText}
                 </p>
-                <ul className="text-sm sm:text-lg md:text-xl font-bold ml-1 md:ml-8 lg:ml-12">
-                  <li className="mb-2 flex items-center">
-                    <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
-                    নামাযের মধ্যে টুপি পড়ে গেলে কী করতে হয়?
-                  </li>
+                {promotionDetails?.lists.length > 0 && <ul className="text-sm sm:text-lg md:text-xl font-bold ml-1 md:ml-8 lg:ml-12 lg:grid grid-cols-2">
                   {promotionDetails?.lists.map((list, i) => (
                     <li key={i} className="mb-2 flex items-center">
-                      <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />{" "}
+                      <HiOutlineArrowCircleRight className="text-2xl mr-3 text-primary" />
                       {list}
                     </li>
                   ))}
-                </ul>
+                </ul>}
                 <p className="text-lg md:text-xl lg:text-2xl my-2">
                   {promotionDetails?.listFooterText}
                 </p>
@@ -143,30 +140,25 @@ export default function Promotion() {
                 {promotionDetails?.videoCaption}
               </p>
               <div className="flex justify-center">
-                <button className="text-xl font-bold text-white mt-2 py-2 px-12 bg-cyan-900 rounded-sm">
-                  <a href="#order">এখনি অর্ডার করুন!</a>
+                <button className="text-xl font-bold text-white mt-2 py-2 px-12 bg-green-600 rounded-sm">
+                  <a href="#order">এখনই অর্ডার করুন!</a>
                 </button>
               </div>
             </div>
           )}
           {/* Form area */}
           <div className="mt-12" id="order">
-            <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold p-4">
+            {promotionDetails?.orderTitle && <h3 className="text-xl md:text-3xl lg:text-5xl text-green-500 font-bold px-4">
               {promotionDetails?.orderTitle}
-            </h3>
-            <h5 className="bg-yellow-200 p-4 text-xl md:text-2xl">
+            </h3>}
+            {promotionDetails?.orderWarn && <h5 className="bg-yellow-200 p-4 text-xl md:text-2xl">
               {promotionDetails?.orderWarn}
-            </h5>
+            </h5>}
 
-            <div className="mt-5 p-4 border-4 border-green-300">
-              <p className="text-xl md:text-2xl lg:text-4xl text-red-400">
-                সম্পুর্ন নিশ্চিত হয়ে, অর্ডার করতে আপনার নাম, ঠিকানা ও ফোন
-                নাম্বার লিখুন।।​
-              </p>
-
-              <div className="flex flex-col md:flex-row justify-between md:space-x-12 mt-5 space-y-12">
+            <div className=" px-4 border-4 border-primary">
+              <div className="flex flex-col flex-col-reverse md:flex-row justify-between md:space-x-12 space-y-12">
                 <div className=" md:w-1/2">
-                  <h5 className="text-lg font-bold">Billing Details</h5>
+                  <h5 className="text-lg font-bold mt-4">Billing Details</h5>
                   <form onSubmit={handleConfirmOrder}>
                     {/* Input field */}
                     <div className="flex flex-col space-y-1 mt-5">
@@ -235,9 +227,10 @@ export default function Promotion() {
                         htmlFor="customerAddress"
                         className="text-lg font-bold"
                       >
-                        আপনার ঠিকানা
+                        বিস্তারিত ঠিকানা
                         <span className="text-red-600"> *</span>
                       </label>
+                    <div className="xs">বাড়ি, গ্রাম, রাস্তা, মোড়, বাজার, থানা ইত্যাদি</div>
                       <input
                         id="customerAddress"
                         type="text"
@@ -248,20 +241,11 @@ export default function Promotion() {
                         onChange={(e) => handleChange(e)}
                       />
                     </div>
-                    {/* Input field */}
-                    <div className="mt-5">
-                      <input
-                        type="submit"
-                        value="কনফার্ম অর্ডার"
-                        className="text-xl font-bold text-white mt-2 py-2 px-12 bg-cyan-900 rounded-sm cursor-pointer"
-                      />
-                    </div>
-                  </form>
-                </div>
-                <div className=" md:w-1/2 text-lg font-bold">
-                  <h5 className="text-lg font-bold">Your Order</h5>
+                    {/* Mobile Order Details */}
+                    <div className=" block md:hidden text-lg font-bold">
+                  <h5 className="text-lg font-bold mt-5">Your Order</h5>
 
-                  <div className="flex items-center justify-between mt-5 border-t border-b">
+                  <div className="flex items-center justify-between mt-1 border-t border-b">
                     <div className="flex items-center">
                       <img
                         src={promotionDetails?.image}
@@ -273,11 +257,11 @@ export default function Promotion() {
                     <p>{promotionDetails?.offerPrice}.00 TK</p>
                   </div>
                   <div className="flex items-center justify-between mt-2">
-                    <p>Subtotal</p>
+                    <p>Price</p>
                     <p>{promotionDetails?.offerPrice}.00 TK</p>
                   </div>
                   <div className="flex items-center justify-between mt-2 border-b">
-                    <p>Shipping</p>
+                    <p>Courier Charge</p>
                     <p>
                       {deliveryCharge}
                       .00 TK
@@ -293,7 +277,59 @@ export default function Promotion() {
                   </div>
 
                   <div className="p-3 bg-gray-300 mt-5">
-                    <p>ক্যাশ অন ডেলিভারি</p>
+                    <p className="flex items-center"><span className="text-red-600 mr-1">*</span> ক্যাশ অন ডেলিভারি</p>
+                    <p className="bg-gray-400 p-2">
+                      পণ্য হাতে পেয়ে টাকা পরিশোধ
+                    </p>
+                  </div>
+                </div>
+                    {/* Mobile Order Details */}
+                    {/* Input field */}
+                    <div className="mt-5 mb-3">
+                      <input
+                        type="submit"
+                        value="কনফার্ম অর্ডার"
+                        className="text-xl font-bold text-white mt-2 py-2 px-12 bg-green-600 rounded-sm cursor-pointer"
+                      />
+                    </div>
+                  </form>
+                </div>
+                <div className=" hidden md:block w-1/2 text-lg font-bold">
+                  <h5 className="text-lg font-bold">Your Order</h5>
+
+                  <div className="flex items-center justify-between mt-5 border-t border-b">
+                    <div className="flex items-center">
+                      <img
+                        src={promotionDetails?.image}
+                        className="w-20 p-3"
+                        alt=""
+                      />
+                      <p>{promotionDetails?.name}</p>
+                    </div>
+                    <p>{promotionDetails?.offerPrice}.00 TK</p>
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p>Price</p>
+                    <p>{promotionDetails?.offerPrice}.00 TK</p>
+                  </div>
+                  <div className="flex items-center justify-between mt-2 border-b">
+                    <p>Courier Charge</p>
+                    <p>
+                      {deliveryCharge}
+                      .00 TK
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p>Total</p>
+                    <p>
+                      {Number(promotionDetails?.offerPrice) +
+                        Number(deliveryCharge)}
+                      .00 TK
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-gray-300 mt-5">
+                    <p className="flex items-center"><span className="text-red-600 mr-1">*</span> ক্যাশ অন ডেলিভারি</p>
                     <p className="bg-gray-400 p-2">
                       পণ্য হাতে পেয়ে টাকা পরিশোধ
                     </p>
